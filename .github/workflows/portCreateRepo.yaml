@@ -18,7 +18,7 @@ on:
 jobs:
   scaffold-service:
     env:
-      ORG_NAME: Test-Port-Gui
+      ORG_NAME: Cielo-Poc
     runs-on: ubuntu-latest
     steps:
       - uses: port-labs/cookiecutter-gha@v1.1
