@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create a Repo
-        uses: actions/checkout@v
+        uses: actions/checkout@v4
         id: create_repo
         with:
           portClientId: ${{ secrets.PORT_CLIENT_ID }}
