@@ -1,6 +1,6 @@
 # portCreateRepo.yaml
 
-name: Scaffold a new service
+name: New service
 on:
   workflow_dispatch:
     inputs:
@@ -21,7 +21,7 @@ jobs:
       ORG_NAME: cielo-poc-org
     runs-on: ubuntu-latest
     steps:
-      - name: "Create a Repo"
+      - name: Create a Repo
         id: create_repo
         with:
           portClientId: ${{ secrets.PORT_CLIENT_ID }}
