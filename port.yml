@@ -1,0 +1,11 @@
+- identifier: some_identifier
+  title: Some Title
+  team: []
+  icon: DefaultBlueprint
+  blueprint: service
+  properties:
+    readme: string
+    url: https://example.com
+    language: string
+    resource_definitions: https://example.com
+  relations: {}
