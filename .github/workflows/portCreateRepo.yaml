@@ -1,6 +1,3 @@
-# portCreateRepo.yaml
-
-name: New service
 on:
   workflow_dispatch:
     inputs:
@@ -9,38 +6,24 @@ on:
         description: "Port's payload, including details for who triggered the action and general context (blueprint, run id, etc...)"
         type: string
     secrets:
-      ORG_ADMIN_TOKEN:
+      ORG_TOKEN:
         required: true
       PORT_CLIENT_ID:
         required: true
       PORT_CLIENT_SECRET:
         required: true
 jobs:
-  create-repo:
-    env:
-      ORG_NAME: cielo-poc-org
+  scaffold:
     runs-on: ubuntu-latest
     steps:
-      - name: Create a Repo
-        uses: actions/checkout@v4
-        id: create_repo
+      - uses: port-labs/cookiecutter-gha@v1.1
         with:
           portClientId: ${{ secrets.PORT_CLIENT_ID }}
           portClientSecret: ${{ secrets.PORT_CLIENT_SECRET }}
-          token: ${{ secrets.ORG_ADMIN_TOKEN }}
+          token: ${{ secrets.ORG_TOKEN }}
           portRunId: ${{ fromJson(inputs.port_payload).context.runId }}
-          repositoryName: ${{ fromJson(inputs.port_payload).payload.properties.service_name }}
-          blueprintIdentifier: "service"
-          organizationName: ${{ env.ORG_NAME }}
-
-      - name: "Report deployment Entity to port 🚢"
-        uses: port-labs/port-github-action@v1
-        with:
-          clientId: ${{ secrets.PORT_CLIENT_ID }}
-          clientSecret: ${{ secrets.PORT_CLIENT_SECRET }}
-          identifier: ${{ fromJson(inputs.port_payload).payload.properties.service_name }}
-          blueprint: service
-          properties: |
-            {
-              "url": "https://github.com/${{ env.ORG_NAME }}/${{ fromJson(inputs.port_payload).payload.properties.service_name }}"
-            }
+          repositoryName: ${{ fromJson(inputs.port_payload).payload.properties.name }}
+          portUserInputs: ${{ fromJson(inputs.port_payload).payload.properties }}
+          cookiecutterTemplate: https://github.com/lacion/cookiecutter-golang
+          blueprintIdentifier: "microservice"
+          organizationName: cielo-poc-org
