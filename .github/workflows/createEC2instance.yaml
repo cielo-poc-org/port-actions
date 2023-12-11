@@ -25,7 +25,7 @@ jobs:
       - name: Copy template file
         run: |
           mkdir -p ./targetRepo/resources
-          cp templates/cloudResource.tf ./targetRepo/resources/${{ inputs.name }}.tf
+          cp templates/ec2template.tf ./targetRepo/resources/${{ inputs.name }}.tf
       - name: Update new file data
         run: |
           sed -i 's/{{ ami }}/${{ inputs.ami }}/' ./targetRepo/resources/${{ inputs.ami }}.tf
