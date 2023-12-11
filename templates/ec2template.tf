@@ -1,4 +1,4 @@
-resource "aws_instance" "artzibordi_instance" {
+resource "aws_instance" "{{ name }}" {
     ami =  "{{ ami }}"
     instance_type = "{{ instance_type }}"
 
