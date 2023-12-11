@@ -4,7 +4,9 @@ on:
     inputs:
       name:
         type: string
-      visibility:
+      ami:
+        type: string
+      instance_type:
         type: string
       port_payload:
         required: true
