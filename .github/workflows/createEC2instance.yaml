@@ -29,7 +29,7 @@ jobs:
       - name: Update new file data
         run: |
           sed -i 's/{{ ami }}/${{ inputs.ami }}/' ./targetRepo/resources/${{ inputs.name }}.tf
-          sed -i 's/{{ instance_type }}/${{ inputs.instace_type }}/' ./targetRepo/resources/${{ inputs.name }}.tf
+          sed -i 's/{{ instance_type }}/${{ inputs.instance_type }}/' ./targetRepo/resources/${{ inputs.name }}.tf
           sed -i 's/{{ name }}/${{ inputs.name }}/' ./targetRepo/resources/${{ inputs.name }}.tf
       - name: Open a pull request
         uses: peter-evans/create-pull-request@v5
